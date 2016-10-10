@@ -33,7 +33,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(24, PIXEL_PIN, NEO_GRB + NEO_KHZ800)
 #define RANDOM_COLOUR         5
 #define RANDOM_PIXEL_COLOUR   6
 
-int delay_array [EFFECT_COUNT + 1] = {1000, 100, 10, 10, 100, 100};
+int delay_array [EFFECT_COUNT + 1] = {1000, 50, 10, 10, 100, 100};
 
 uint8_t count = 0;
 uint8_t colour_index = 0;
