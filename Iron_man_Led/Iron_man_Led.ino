@@ -19,8 +19,8 @@
 
 #include <Adafruit_NeoPixel.h>
 
-#define PIXEL_PIN 4
-#define BUTTON_PIN 8
+#define PIXEL_PIN 3
+#define BUTTON_PIN 4
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(24, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
@@ -62,7 +62,7 @@ uint32_t iron_man = strip.Color(150,150,255);
 uint32_t off = strip.Color(0,0,0);
 
 void setup() {
-  Serial.begin(115200);
+  //Serial.begin(115200);
   
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   strip.begin();
@@ -76,15 +76,15 @@ void loop() {
   if(!digitalRead(BUTTON_PIN) && button_state == false){
     button_timer = millis();
     button_state = true;
-    Serial.print("Button pressed\t");
+    //Serial.print("Button pressed\t");
   }
   // check for button release
   else if(digitalRead(BUTTON_PIN) && button_state == true){
     button_state = false;
     button_timer = millis() - button_timer;
-    Serial.print("button released after ");
-    Serial.print(button_timer);
-    Serial.println("ms\t");
+    //Serial.print("button released after ");
+    //Serial.print(button_timer);
+    //Serial.println("ms\t");
     // if longer than off time, turn LEDs off
     if(button_timer > BUTTON_RESET_TIME){
       previous_button_press_count = 0;
@@ -92,7 +92,7 @@ void loop() {
       count = 0;
       effect_timer = 0;
       button_press_count = 0;
-      Serial.println("Resetting!!\n");
+      //Serial.println("Resetting!!\n");
     }
     // if longer than debounce time find out if within button_press_time and increment count if so else set timeout bit 
     else if(button_timer > BUTTON_DEBOUNCE_TIME){
@@ -106,9 +106,9 @@ void loop() {
   else if(((millis() - button_press_timer) > BUTTON_PRESS_TIME) && (button_press_timer_active == true)){
     button_press_timer_active = false;
     button_timeout = true;
-    Serial.print("Button press timeout, count = ");
-    Serial.println(button_press_count);
-    Serial.println("");
+    //Serial.print("Button press timeout, count = ");
+    //Serial.println(button_press_count);
+    //Serial.println("");
   }
 
   // check if button_timeout is true and respond by setting new display parameters
